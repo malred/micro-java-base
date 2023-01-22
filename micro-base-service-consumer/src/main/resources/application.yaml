@@ -48,7 +48,7 @@ feign:
 logging:
   level:
     # Feign⽇志只会对⽇志级别为debug的做出响应
-    com.lagou.edu.controller.service.ResumeServiceFeignClient: debug
+    org.malred.service.service.UserServiceFeignClient: debug
 hystrix:
   command:
     default:
