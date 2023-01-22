@@ -1,0 +1,29 @@
+server:
+  port: 8082 # 后期该微服务多实例，端⼝从8080递增（10个以内）
+Spring:
+  application:
+    name: micro-base-provider
+  datasource:
+    url: jdbc:mysql://localhost:3307/test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  jpa:
+    database: MySQL
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy:
+          #避免将驼峰命名转换为下划线命名(jpa会自动把实体类的驼峰字段转为 _ 连接的字段名)
+          org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  cloud:
+    nacos:
+      discovery:
+        #集群模式,多个nacos地址用逗号隔开,也可以使用VIP(虚拟ip)映射到各实例的地址信息
+        #        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+        server-addr: 192.168.92.138:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

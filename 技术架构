@@ -1,0 +1,16 @@
+外层网关 nginx,openresty?
+权限认证?sso? Oauth2 (国内有个springcloud admin?)
+注册中心 nacos
+负载均衡 ribbon?(feign和openfeign以及集成了ribbon) # 官方已经宣布停止更新Feign组件，所以可以使用OpenFeign进行代替
+熔断器 Sentinel
+网关 springcloud gateway
+配置中心 nacos
+服务调用 openfeign/feign
+消息驱动 spring cloud stream
+消息队列 rocketmq (次选 kafka)
+链路追踪 sleuth/zipkin
+链路监控 cat
+分布式事务 seata
+日志? ELK
+
+
