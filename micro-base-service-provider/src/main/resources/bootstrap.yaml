@@ -1,31 +1,40 @@
 server:
   port: 8082 # 后期该微服务多实例，端⼝从8080递增（10个以内）
-Spring:
+spring:
+  # 当前生效的环境/配置文件
+  #  profiles: dev
   application:
     name: micro-base-provider
-  datasource:
-    url: jdbc:mysql://localhost:3307/test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: 123456
-  jpa:
-    database: MySQL
-    show-sql: true
-    hibernate:
-      naming:
-        physical-strategy:
-          #避免将驼峰命名转换为下划线命名(jpa会自动把实体类的驼峰字段转为 _ 连接的字段名)
-          org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   cloud:
     nacos:
-      discovery:
-        #集群模式,多个nacos地址用逗号隔开,也可以使用VIP(虚拟ip)映射到各实例的地址信息
-        #        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+      config:
         server-addr: 192.168.92.138:8848
-        # 命名空间
         namespace: af561b75-1f12-470e-846c-50df9b4db304
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+        file-extension: yaml
+        # 支持多个共享dataId的配置，优先级小于extension-configs,shared-configs是一个集合
+        shared-configs[0]:
+          # redis RrocketMQ等通用配置可以定义在这个里面
+          dataId: common.yaml # 配置文件名dataId
+          group: DEFAULT_GROUP  # 默认为DEFAULT_GROUP
+          refresh: true # 是否动态刷新,默认为false
+#  datasource:
+#    url: jdbc:mysql://localhost:3307/test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: 123456
+#  jpa:
+#    database: MySQL
+#    show-sql: true
+#    hibernate:
+#      naming:
+#        physical-strategy:
+#          #避免将驼峰命名转换为下划线命名(jpa会自动把实体类的驼峰字段转为 _ 连接的字段名)
+#          org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#  cloud:
+#    nacos:
+#      discovery:
+#        #集群模式,多个nacos地址用逗号隔开,也可以使用VIP(虚拟ip)映射到各实例的地址信息
+#        #        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+#        server-addr: 192.168.92.138:8848
+#        # 命名空间
+#        namespace: af561b75-1f12-470e-846c-50df9b4db304
