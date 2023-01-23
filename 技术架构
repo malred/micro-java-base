@@ -14,5 +14,6 @@ jdk11
 链路监控 cat
 分布式事务 seata
 日志? ELK
+缓存同步? canal?/guava?/ehcache?
 
 
