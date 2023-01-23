@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 // 指定带entity注解的实体类所在包,可以扫描到common模块里的实体类
 @EntityScan("org.malred.service.pojo")

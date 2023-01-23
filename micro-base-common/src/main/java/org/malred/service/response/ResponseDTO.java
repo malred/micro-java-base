@@ -1,7 +1,7 @@
 package org.malred.service.response;
 
 /**
- * 响应返回结果类
+ * 响应返回结果类(前后端交互用)
  *
  * @param <T>
  */
