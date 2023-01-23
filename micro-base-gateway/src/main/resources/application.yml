@@ -1,0 +1,69 @@
+server:
+  port: 9001
+spring:
+  # 当前生效的环境/配置文件
+#  profiles: dev
+  application:
+    name: micro-base-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.92.138:8848
+        namespace: af561b75-1f12-470e-846c-50df9b4db304
+    #      config:
+    #        server-addr: 192.168.92.138:8848
+    #        namespace: af561b75-1f12-470e-846c-50df9b4db304
+    #        file-extension: yaml
+    #        # 支持多个共享dataId的配置，优先级小于extension-configs,shared-configs是一个集合
+    #        shared-configs[0]:
+    #          # redis RrocketMQ等通用配置可以定义在这个里面
+    #          dataId: gateway-common.yaml # 配置文件名dataId
+    #          group: DEFAULT_GROUP  # 默认为DEFAULT_GROUP
+    #          refresh: true # 是否动态刷新,默认为false
+    gateway:
+      routes: # 路由可以有多个
+        # 对应消费者的微服务
+        - id: service-consumer-router # 我们⾃定义的路由 ID，保持唯⼀
+            # uri: http://127.0.0.1:8083 # ⽬标服务地址（部署多实例）
+            # 动态路由：uri配置的应该是⼀个服务名称，⽽不应该是⼀个具体的服务实例的地址
+            # gateway⽹关从服务注册中⼼获取实例信息然后负载后路由
+          uri: lb://micro-base-consumer
+          # 断⾔：路由条件，Predicate 接受⼀个输⼊参数，返回⼀个布尔值结果。
+          # 该接⼝包含多种默 认⽅法来将 Predicate 组合成其他复杂的逻辑（⽐如：与，或，⾮）。
+          predicates:
+            - Path=/consumer/**
+        # 对应提供者的微服务
+        - id: service-provider-router # 我们⾃定义的路由 ID，保持唯⼀
+          # uri: http://127.0.0.1:8082 # ⽬标服务地址
+          #http://localhost:9001/user/openstate/1
+          #http://127.0.0.1:8082/openstate/1
+          # 动态路由,自动到注册中心找
+          uri: lb://micro-base-provider
+          # 断⾔：路由条件，Predicate 接受⼀个输⼊参数，返回⼀个布尔值结果。
+          # 该接⼝包含多种默 认⽅法来将 Predicate 组合成其他复杂的逻辑（⽐如：与，或，⾮）。
+          predicates:
+            - Path=/user/**
+          #filters:
+          #  - StripPrefix=1 # 设置去掉 1 个前缀,此例是去掉/user
+# 测试环境
+#  spring:
+#    profiles: test
+#    cloud:
+#      nacos:
+#        discovery:
+#          server-addr: 127.0.0.1:8848
+#          namespace:
+#        config:
+#          server-addr: 127.0.0.1:8848
+#          namespace:
+#          file-extension: yaml
+#          shared-configs[0]:
+#            dataId: gateway-common.yaml
+#            group: DEFAULT_GROUP
+#            refresh: true
+
+#分布式链路追踪
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: debug
+    org.springframework.cloud.sleuth: debug

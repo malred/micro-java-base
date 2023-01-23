@@ -1,3 +1,5 @@
+jdk11
+
 外层网关 nginx,openresty?
 权限认证?sso? Oauth2 (国内有个springcloud admin?)
 注册中心 nacos

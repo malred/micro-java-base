@@ -9,6 +9,8 @@ spring:
         #集群模式,多个nacos地址用逗号隔开,也可以使用VIP(虚拟ip)映射到各实例的地址信息
         #        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
         server-addr: 192.168.92.138:8848
+        # 命名空间
+        namespace: af561b75-1f12-470e-846c-50df9b4db304
 management:
   endpoints:
     web:
