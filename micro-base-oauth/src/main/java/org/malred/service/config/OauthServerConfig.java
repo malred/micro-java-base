@@ -29,6 +29,11 @@ import javax.sql.DataSource;
 public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
+    /**
+     * 自定义jwt转换器
+     */
+    @Autowired
+    private AccessTokenConvertor accessTokenConvertor;
     private String sign_key = "123456"; //密钥
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -67,8 +72,8 @@ public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
     /**
      * 客户端详情配置，
      * ⽐如client_id，secret
-     * 当前这个服务就如同QQ平台，拉勾⽹作为客户端需要qq平台进⾏登录授权认证等，
-     * 提前需要到QQ平台注册，QQ平台会给拉勾⽹
+     * 当前这个服务就如同QQ平台，网站作为客户端需要qq平台进⾏登录授权认证等，
+     * 需要提前到QQ平台注册，QQ平台会给网站
      * 颁发client_id等必要参数，表明客户端是谁
      *
      * @param clients
@@ -121,6 +126,8 @@ public class OauthServerConfig extends AuthorizationServerConfigurerAdapter {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
         jwtAccessTokenConverter.setSigningKey(sign_key); //签名密钥
         jwtAccessTokenConverter.setVerifier(new MacSigner(sign_key)); //校验用的密钥,和签名密钥一致
+        //把自己的转换器注册进来
+        jwtAccessTokenConverter.setAccessTokenConverter(accessTokenConvertor);
         return jwtAccessTokenConverter;
     }
 

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+/**
+ * 资源服务器也需要定义转换器,把载荷信息设置到认证对象的details属性中
+ */
 @Component
 public class AccessTokenConvertor extends DefaultAccessTokenConverter {
     @Override
