@@ -16,7 +16,19 @@
         <module>micro-base-service-provider</module>
         <module>micro-base-oauth</module>
     </modules>
-
+    <!--可以上传到自己指定的maven私服(运行maven的deploy)-->
+    <!--    <distributionManagement>-->
+    <!--        <repository>-->
+    <!--            <id>releases</id>-->
+    <!--            <name>Releases</name>-->
+    <!--            <url>http://192.168.92.138:8081/repository/maven-releases/</url>-->
+    <!--        </repository>-->
+    <!--        <snapshotRepository>-->
+    <!--            <id>snapshots</id>-->
+    <!--            <name>Snapshot</name>-->
+    <!--            <url>http://192.168.92.138:8081/repository/maven-snapshots/</url>-->
+    <!--        </snapshotRepository>-->
+    <!--    </distributionManagement>-->
     <!--
         spring boot ⽗启动器依赖
             我部署的nacos版本: 1.4.2
