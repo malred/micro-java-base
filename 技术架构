@@ -10,8 +10,7 @@ jdk11
 服务调用 openfeign/feign
 消息驱动 spring cloud stream
 消息队列 rocketmq (次选 kafka)
-链路追踪 sleuth/zipkin
-链路监控 cat
+链路追踪 sleuth + zipkin,服务器端cat
 分布式事务 seata
 日志? ELK
 缓存同步? canal?/guava?/ehcache?
