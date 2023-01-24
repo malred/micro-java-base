@@ -1,0 +1,17 @@
+server:
+  port: 9999
+Spring:
+  application:
+    name: micro-base-oauth
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.92.138:8848
+        namespace: af561b75-1f12-470e-846c-50df9b4db304
+        file-extension: yaml
+        # 支持多个共享dataId的配置，优先级小于extension-configs,shared-configs是一个集合
+        shared-configs[0]:
+          # redis RrocketMQ等通用配置可以定义在这个里面
+          dataId: oauth-server.yaml # 配置文件名dataId
+          group: DEFAULT_GROUP  # 默认为DEFAULT_GROUP
+          refresh: true # 是否动态刷新,默认为false

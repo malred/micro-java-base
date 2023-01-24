@@ -8,20 +8,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <description>服务提供者</description>
-    <artifactId>micro-base-service-provider</artifactId>
+
+    <artifactId>micro-base-oauth</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-    <!-- 提供功能接口:根据用户id查询用户 -->
     <dependencies>
-        <dependency>
-            <artifactId>micro-base-common</artifactId>
-            <groupId>org.malred</groupId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
         <!--nacos服务注册发现客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -32,16 +26,7 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-        <!--链路追踪-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-        <!--导⼊spring cloud oauth2依赖(用于权限认证)-->
+        <!--导⼊spring cloud oauth2依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
@@ -64,6 +49,12 @@
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
             <version>2.3.4.RELEASE</version>
+        </dependency>
+        <!--操作数据库-->
+        <dependency>
+            <groupId>org.malred</groupId>
+            <artifactId>micro-base-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

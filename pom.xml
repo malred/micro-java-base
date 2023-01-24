@@ -14,6 +14,7 @@
         <module>micro-base-common</module>
         <module>micro-base-service-consumer</module>
         <module>micro-base-service-provider</module>
+        <module>micro-base-oauth</module>
     </modules>
 
     <!--
