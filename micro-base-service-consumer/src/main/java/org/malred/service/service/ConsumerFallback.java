@@ -10,7 +10,7 @@ import javax.websocket.server.PathParam;
 @Component  //别忘了这个注解，还应该被扫描到
 public class ConsumerFallback implements UserServiceFeignClient{
     @Override
-    public String findDefaultUserState(Long userId ) {
+    public String findUserById(Long userId ) {
         return "-1";
     }
 }

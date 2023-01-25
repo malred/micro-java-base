@@ -24,6 +24,6 @@ import javax.websocket.server.PathParam;
 public interface UserServiceFeignClient {
     //feign->拼装url,发起请求
     //调用该本地方法,实际是远程请求调用
-    @RequestMapping("/openstate/{userId}")
-    public String findDefaultUserState(@PathVariable("userId") Long userId );
+    @RequestMapping("/find/{userId}")
+    public String findUserById(@PathVariable("userId") Long userId );
 }

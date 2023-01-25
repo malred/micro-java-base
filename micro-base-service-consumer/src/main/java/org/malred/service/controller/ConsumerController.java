@@ -31,14 +31,14 @@ public class ConsumerController {
      * 注意：兜底类中的⽅法为static静态⽅法
      * fallback：指定Java运⾏时异常兜底逻辑具体哪个⽅法
      */
-    @GetMapping("/checkState/{userId}")
+    @GetMapping("/feign/find/{userId}")
     @SentinelResource(
-            value = "findUserOpenState",
+            value = "findUserById",
             blockHandlerClass = SentinelFallbackClass.class,
             blockHandler = "handleException", fallback = "handleError",
             fallbackClass = SentinelFallbackClass.class
     )
-    public String findResumeOpenState(@PathVariable Long userId, HttpServletRequest request) {
+    public String findUserById(@PathVariable Long userId, HttpServletRequest request) {
         // 从路径获取token
         token = request.getQueryString();
         // 缓存token
@@ -50,7 +50,7 @@ public class ConsumerController {
 //        }
         // 模拟降级：异常⽐例
 //        int i = 1 / 0;
-        return userServiceFeignClient.findDefaultUserState(userId);
+        return userServiceFeignClient.findUserById(userId);
     }
 //    @GetMapping("/checkState/{userId}")
 //    public String findConsumerOpenState(@PathVariable Long userId, HttpServletRequest request) {

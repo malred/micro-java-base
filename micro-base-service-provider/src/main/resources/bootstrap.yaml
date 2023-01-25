@@ -1,6 +1,18 @@
 server:
   port: 8082 # 后期该微服务多实例，端⼝从8080递增（10个以内）
 spring:
+  # Redis服务连接配置
+  redis:
+    # 服务地址
+    host: 127.0.0.1
+    # 服务器连接端口
+    port: 6379
+    # 服务器连接密码(默认为空)
+    password:
+  cache:
+    redis:
+      # 基于注解的redis缓存使用的缓存时间配置
+      time-to-live: 60000
   # 当前生效的环境/配置文件
   #  profiles: dev
   application:

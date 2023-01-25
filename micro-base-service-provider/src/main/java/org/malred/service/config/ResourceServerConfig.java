@@ -71,7 +71,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 // user为前缀的请求需要认证
                 // feign远程调用需要认证,可以查询的不需要认证,其他的需要,
                 // 远程调用的客户端需要认证,服务端(被远程调用的不能让其他的访问,
-//                .antMatchers("/user/**").authenticated()
+                .antMatchers("/user/**").authenticated()
                 .anyRequest().permitAll(); // 其他请求不认证
     }
 }
