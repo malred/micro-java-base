@@ -1,0 +1,12 @@
+package ${package}.pojo;
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Data
+@Entity
+@Table(name = "${entityName}")
+// 要使用非默认缓存方式,需要实现序列号接口!
+public class ${upperEntityName} implements Serializable{}

@@ -15,6 +15,7 @@
         <module>micro-base-service-consumer</module>
         <module>micro-base-service-provider</module>
         <module>micro-base-oauth</module>
+        <module>micro-base-generator</module>
     </modules>
     <!--可以上传到自己指定的maven私服(运行maven的deploy)-->
     <!--    <distributionManagement>-->

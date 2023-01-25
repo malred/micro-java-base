@@ -1,0 +1,9 @@
+package ${package}.service;
+
+import ${package}.pojo.${upperEntityName};
+public interface ${upperEntityName}Service {
+List<${upperEntityName}> findAll();
+${upperEntityName} find${upperEntityName}ById(Long id);
+${upperEntityName} save${upperEntityName}(${upperEntityName} ${entityName});
+void delete${upperEntityName}(Long id);
+}

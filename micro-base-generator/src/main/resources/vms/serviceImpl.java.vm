@@ -1,0 +1,71 @@
+package ${package}.service.impl;
+
+import io.seata.spring.annotation.GlobalTransactional;
+import ${package}.dao.${upperEntityName}Dao;
+import ${package}.pojo.${upperEntityName};
+import ${package}.service.${upperEntityName}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ${upperEntityName}ServiceImpl implements ${upperEntityName}Service {
+@Autowired
+private ${upperEntityName}Dao ${entityName}Dao;
+
+@Override
+@Cacheable(
+cacheNames = "${entityName}",
+// 如果结果为空就不缓存
+unless = "#result==null"
+)
+public ${upperEntityName} find${upperEntityName}ById(Long ${entityName}Id) {
+System.out.println("service接收路由参数: " + ${entityName}Id);
+${upperEntityName} ${entityName} = new ${upperEntityName}();
+${entityName}.setId(${entityName}Id);
+// 自动类型推断
+Example<? extends ${upperEntityName}> example = Example.of(${entityName});
+return ${entityName}Dao.findOne(example).get();
+}
+@Override
+@Cacheable(
+cacheNames = "${entityName}",
+// 如果结果为空就不缓存
+unless = "#result==null"
+)
+public ${upperEntityName} find${upperEntityName}ById(Long ${entityName}Id) {
+System.out.println("service接收路由参数: " + ${entityName}Id);
+${upperEntityName} ${entityName} = new ${upperEntityName}();
+${entityName}.setId(${entityName}Id);
+// 自动类型推断
+Example<? extends ${upperEntityName}> example = Example.of(${entityName});
+return ${entityName}Dao.findOne(example).get();
+}
+
+// 添加和更新方法(通过post和put的http请求来区分)
+@Override
+// 事务发起者使用@GlobalTransactional,其他参与者使用@Transactional
+@GlobalTransactional
+@CachePut(
+cacheNames = "${entityName}",
+// 将修改结果的id作为缓存的key
+key = "#result.id"
+)
+public ${upperEntityName} save${upperEntityName}(${upperEntityName} ${entityName}) {
+${entityName}Dao.save(${entityName});
+return ${entityName}; // 如果返回的是修改之后的(修改后会更新缓存),就是更新成功
+}
+
+// 删除方法
+@Override
+@GlobalTransactional
+@CacheEvict(
+cacheNames = "${entityName}"
+)
+public void delete${upperEntityName}(Long id) {
+${entityName}Dao.deleteById(id);
+}
+}

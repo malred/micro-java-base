@@ -1,0 +1,8 @@
+package ${package}.dao;
+
+
+import ${package}.pojo.${upperEntityName};
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ${upperEntityName}Dao extends JpaRepository<${upperEntityName},Long> { }
+

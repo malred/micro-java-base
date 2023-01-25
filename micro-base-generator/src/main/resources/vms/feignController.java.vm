@@ -1,0 +1,63 @@
+
+package ${package}.controller; ## package是全类名前面那段 如 ${package}
+
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import ${package}.pojo.${upperEntityName}; ## 大写的实体类名
+import ${package}.service.${upperEntityName}ServiceFeignClient;
+import ${package}.service.fallback.SentinelFallbackClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+@RequestMapping("/${entityName}") ## 一般使用实体名称(表名),这里是首字母小写
+public class ${UpperFeignEntityName}Controller extends BaseController <${upperEntityName}> {
+
+    @Override
+    public List<${upperEntityName}> findAll() {
+        return new ArrayList <${upperEntityName}>();
+   }
+
+   @Override
+   public ${upperEntityName} findById(Long id) {
+       return new ${upperEntityName}();
+   }
+
+   @Override
+   public ${upperEntityName} insert() {
+   return new ${upperEntityName}();
+   }
+
+   @Override
+   public ${upperEntityName} update() {
+   return new ${upperEntityName}();
+   }
+
+   @Override
+   public void delete(Long id) {
+   }
+
+   @Qualifier("${package}.service.${UpperFeignEntityName}ServiceFeignClient}") ## UpperFeignEntityName 远程调用的实体类名
+   @Autowired
+   private ${UpperFeignEntityName}ServiceFeignClient ${feignEntityName}ServiceFeignClient; ## feignEntityName 远程调用的实体类名,首字母小写
+
+   @GetMapping("/feign/find/{id}")
+   @SentinelResource(
+   value = "find${UpperFeignEntityName}ById",
+   blockHandlerClass = SentinelFallbackClass.class,
+   blockHandler = "handleException", fallback = "handleError",
+   fallbackClass = SentinelFallbackClass.class
+   )
+   public String find${UpperFeignEntityName}ById(@PathVariable Long id, HttpServletRequest request) {
+   // 从路径获取token
+   token = request.getQueryString();
+   return ${feignEntityName}ServiceFeignClient.find${UpperFeignEntityName}ById(id);
+   }
+   }
