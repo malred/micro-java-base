@@ -35,7 +35,7 @@ public class RedisConfig {
         template.setDefaultSerializer(objectJackson2JsonRedisSerializer);
         return template;
     }
-
+    // 自定义redisCacheManager,定义序列化方式
     @Bean
     public RedisCacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         // 分别创建String和json序列化对象,对缓存数据进行转换
