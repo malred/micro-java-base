@@ -1,5 +1,6 @@
 package org.malred.service.service.impl;
 
+import io.seata.spring.annotation.GlobalTransactional;
 import org.malred.service.dao.UserDao;
 import org.malred.service.pojo.User;
 import org.malred.service.service.UserService;
@@ -32,6 +33,8 @@ public class UserServiceImpl implements UserService {
 
     // 添加和更新方法(通过post和put的http请求来区分)
     @Override
+    // 事务发起者使用@GlobalTransactional,其他参与者使用@Transactional
+    @GlobalTransactional
     @CachePut(
             cacheNames = "user",
             // 将修改结果的id作为缓存的key
@@ -44,6 +47,7 @@ public class UserServiceImpl implements UserService {
 
     // 删除方法
     @Override
+    @GlobalTransactional
     @CacheEvict(
             cacheNames = "user"
     )
