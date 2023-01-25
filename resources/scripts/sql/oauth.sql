@@ -23,6 +23,7 @@ CREATE TABLE `oauth_client_details` (
 -- Records of oauth_client_details
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_client_details` VALUES ('client_id123','provider,consumer', 'abcxyz', 'all', 'password,refresh_token',NULL, NULL, 7200, 259200, NULL, NULL);
+# INSERT INTO `oauth_client_details` VALUES ('client_id','provider,consumer', 'abcxyz', 'all', 'password,refresh_token',NULL, NULL, 7200, 259200, NULL, NULL);
+INSERT INTO `oauth_client_details` VALUES ('client_id','provider,consumer', '$2a$10$/iVjrw0fVm91QjLBCxqagexHZVDwtMx6ZLcz1At/6P3RYZCx52J/m', 'all', 'password,refresh_token',NULL, NULL, 7200, 259200, NULL, NULL);
 COMMIT;
 SET FOREIGN_KEY_CHECKS = 1;

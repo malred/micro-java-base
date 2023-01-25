@@ -15,6 +15,7 @@ CREATE TABLE `oauth_users` (
 -- Records of users
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_users` VALUES (4, 'user', '123456');
+# INSERT INTO `oauth_users` VALUES (4, 'user', '123456');
+INSERT INTO `oauth_users` VALUES (4, 'user', '$2a$10$8w2xo2mEdDhu3dmFOulax.c9V7oMT2c799TP12tolOV4RmbT26Ckq');
 COMMIT;
 SET FOREIGN_KEY_CHECKS = 1;
