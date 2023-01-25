@@ -1,8 +1,9 @@
 package org.malred.service.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import org.malred.service.service.SentinelFallbackClass;
+import org.malred.service.pojo.Order;
 import org.malred.service.service.UserServiceFeignClient;
+import org.malred.service.service.fallback.SentinelFallbackClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/consumer")
-public class ConsumerController {
-    // 缓存token
-    public static String token;
+public class ConsumerController extends BaseController<Order> {
+
+    @Override
+    public List<Order> findAll() {
+        return new ArrayList<Order>();
+    }
+
+    @Override
+    public Order findById(Long id) {
+        return new Order();
+    }
+
+    @Override
+    public Order insert() {
+        return new Order();
+    }
+
+    @Override
+    public Order update() {
+        return new Order();
+    }
+
+    @Override
+    public void delete(Long id) {
+    }
+
     // 远程调用user服务的客户端
     @Qualifier("org.malred.service.service.UserServiceFeignClient")
     @Autowired

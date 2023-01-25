@@ -3,7 +3,6 @@ package org.malred.service.config;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.Data;
-import org.malred.service.controller.ConsumerController;
 
 /**
  * feign拦截器
@@ -18,6 +17,6 @@ public class FeignInterceptor implements RequestInterceptor {
     }
 
     public String getToken() {
-        return ConsumerController.token;
+        return Token.token;
     }
 }

@@ -17,7 +17,6 @@ import javax.websocket.server.PathParam;
 //        // 远程调用的接口
 //        path = "/user")
 @FeignClient(value = "micro-base-provider",
-//        fallback = ConsumerFallback.class,
         configuration = FeignInterceptor.class,
         path = "/user")
 // http://bd:8083/consumer/checkState/1

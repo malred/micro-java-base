@@ -1,4 +1,4 @@
-package org.malred.service.service;
+package org.malred.service.service.fallback;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 
